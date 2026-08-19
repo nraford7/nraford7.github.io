@@ -3,115 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Noah Raford — Side Projects, Thought Experiments, Creative Infrastructure</title>
-<meta name="description" content="A personal archive of side hustles, thought experiments, and creative infrastructure by Noah Raford.">
+<title>Noah Raford</title>
+<meta name="description" content="Side projects, thought experiments, creative infrastructure.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --desk:#1a1714;--vellum:#e8dfc8;--vellum-dark:#d4c9aa;--vellum-edge:#c4b78f;
-  --ink-dark:#2c2720;--ink-text:#3a3228;--pencil:#6b5e4f;--pencil-light:#9a8b78;
-  --red-pencil:#8b4040;--blue-pencil:#4a6278;
-  --gold:#c99a4e;--gold-dim:#a07a3a;
-  --serif:"Spectral",Georgia,serif;--display:"Libre Caslon Display",Georgia,serif;
-  --mono:"IBM Plex Mono",monospace;
+  --bg:#111110;--surface:#1a1918;--rule:#2a2826;
+  --text:#c8c2b8;--dim:#7a746a;--faint:#4a4640;
+  --accent:#c49a4e;--accent-dim:#8a7040;
+  --mono:"IBM Plex Mono",monospace;--serif:"Spectral",Georgia,serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--desk);color:var(--vellum);font-family:var(--serif);
-  font-size:clamp(1rem,.7rem + .5vw,1.15rem);line-height:1.7;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);
+  font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
 
-/* desk texture */
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.12;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* subtle grid paper */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.03;
+  background-image:
+    linear-gradient(var(--rule) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:40px 40px}
 
-.page{position:relative;z-index:1;max-width:64rem;margin:0 auto;
-  padding:clamp(3rem,8vh,6rem) clamp(1.4rem,5vw,3rem)}
+.page{max-width:680px;margin:0 auto;padding:clamp(4rem,12vh,8rem) 2rem 6rem;position:relative;z-index:1}
 
 /* ---------- header ---------- */
-.header{margin-bottom:clamp(4rem,10vh,7rem)}
-.header h1{font-family:var(--display);font-size:clamp(2.8rem,1.6rem + 5vw,5.4rem);
-  font-weight:400;line-height:.92;color:var(--vellum);letter-spacing:-.02em;
-  margin-bottom:1rem}
-.header .tagline{font-family:var(--mono);font-size:.82rem;color:var(--pencil-light);
-  letter-spacing:.04em;line-height:1.6;max-width:48ch}
-.header .tagline a{color:var(--gold-dim);text-decoration:none;border-bottom:1px solid var(--gold-dim);
-  transition:color .2s}
-.header .tagline a:hover{color:var(--gold)}
-.header .subtitle{font-family:var(--serif);font-style:italic;font-size:1.05rem;
-  color:var(--pencil-light);margin-top:.8rem;max-width:52ch}
+.name{font-family:var(--serif);font-size:clamp(2rem,1.2rem + 3vw,3.2rem);
+  font-weight:600;color:var(--text);letter-spacing:-.02em;line-height:1;
+  margin-bottom:.5rem}
+.bio{font-size:12px;color:var(--dim);line-height:1.7;max-width:52ch;margin-bottom:.3rem}
+.bio a{color:var(--accent-dim);text-decoration:none}
+.bio a:hover{color:var(--accent)}
+.header-rule{border:none;border-top:1px solid var(--rule);margin:2rem 0 3rem}
 
-/* ---------- cards (vellum pages on the desk) ---------- */
-.section{margin-bottom:clamp(3rem,8vh,5rem)}
-.section-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--pencil-light);margin-bottom:1.6rem;
-  padding-bottom:.5rem;border-bottom:1px solid rgba(200,180,140,.15)}
+/* ---------- sections ---------- */
+.section{margin-bottom:3.5rem}
+.section-label{font-size:10px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:1.2rem}
 
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.4rem}
+/* ---------- entries ---------- */
+.entry{display:flex;gap:1rem;padding:.45rem 0;border-bottom:1px solid transparent;
+  text-decoration:none;color:var(--text);transition:border-color .15s}
+.entry:hover{border-bottom-color:var(--rule)}
+.entry-title{font-family:var(--serif);font-size:15px;font-weight:600;
+  color:var(--text);white-space:nowrap;flex-shrink:0;transition:color .15s}
+.entry:hover .entry-title{color:var(--accent)}
+.entry-dash{color:var(--faint);flex-shrink:0}
+.entry-desc{font-size:12px;color:var(--dim);line-height:1.6;padding-top:2px}
 
-.card{background:var(--vellum);color:var(--ink-text);border-radius:2px;
-  padding:1.6rem 1.5rem 1.4rem;position:relative;
-  box-shadow:2px 3px 12px rgba(0,0,0,.35),0 1px 3px rgba(0,0,0,.2);
-  transition:transform .2s ease,box-shadow .2s ease;
-  text-decoration:none;display:block}
-.card:hover{transform:translateY(-3px) rotate(-.3deg);
-  box-shadow:3px 6px 20px rgba(0,0,0,.45),0 2px 6px rgba(0,0,0,.25)}
+/* no-link entries */
+.entry-static{cursor:default}
+.entry-static:hover{border-bottom-color:transparent}
+.entry-static:hover .entry-title{color:var(--text)}
 
-/* paper texture overlay */
-.card::before{content:"";position:absolute;inset:0;border-radius:2px;opacity:.06;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E")}
+/* ---------- tool list ---------- */
+.tools{display:flex;flex-wrap:wrap;gap:.4rem .8rem;padding-top:.2rem}
+.tool{font-size:12px;color:var(--dim);text-decoration:none;transition:color .15s}
+.tool:hover{color:var(--accent)}
+.tool::before{content:">";color:var(--faint);margin-right:.3rem}
 
-/* torn/rough edge on some cards */
-.card-torn{clip-path:polygon(0 0,100% 0,100% calc(100% - 4px),98% 100%,96% calc(100% - 2px),
-  93% 100%,90% calc(100% - 3px),86% 100%,82% calc(100% - 1px),78% 100%,74% calc(100% - 3px),
-  70% 100%,66% calc(100% - 2px),60% 100%,54% calc(100% - 3px),48% 100%,42% calc(100% - 1px),
-  36% 100%,30% calc(100% - 3px),24% 100%,18% calc(100% - 2px),12% 100%,6% calc(100% - 3px),
-  2% 100%,0 calc(100% - 2px));padding-bottom:1.8rem}
-
-/* vellum variant (translucent, warm) */
-.card-vellum{background:rgba(228,218,195,.88);backdrop-filter:blur(2px)}
-
-/* blueprint variant (dark, technical) */
-.card-blueprint{background:#1e2a35;color:#8ab4d4;
-  box-shadow:2px 3px 12px rgba(0,0,0,.5)}
-.card-blueprint .card-title{color:#b8d4e8}
-.card-blueprint .card-desc{color:#7a9ab4}
-.card-blueprint::before{opacity:.04}
-
-/* sketch variant (lighter, informal) */
-.card-sketch{background:#f2ece0;border:1px dashed var(--vellum-edge)}
-
-.card-title{font-family:var(--display);font-size:1.15rem;font-weight:400;
-  color:var(--ink-dark);line-height:1.2;margin-bottom:.5rem}
-.card-desc{font-size:.88rem;line-height:1.52;color:var(--pencil)}
-.card-tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;
-  color:var(--pencil-light);margin-top:.8rem;text-transform:uppercase}
-.card-nolink{cursor:default}
-.card-nolink:hover{transform:none;box-shadow:2px 3px 12px rgba(0,0,0,.35),0 1px 3px rgba(0,0,0,.2)}
-
-/* tool pills */
-.tools{display:flex;flex-wrap:wrap;gap:.6rem}
-.tool{font-family:var(--mono);font-size:.76rem;color:var(--pencil-light);
-  background:rgba(200,180,140,.08);border:1px solid rgba(200,180,140,.15);
-  border-radius:2px;padding:.35rem .8rem;text-decoration:none;
-  transition:color .2s,border-color .2s}
-.tool:hover{color:var(--gold);border-color:var(--gold-dim)}
-
-/* ---------- about strip ---------- */
-.about{margin-top:clamp(3rem,8vh,5rem);padding-top:2rem;
-  border-top:1px solid rgba(200,180,140,.15)}
-.about p{font-size:.9rem;color:var(--pencil-light);max-width:56ch;
-  line-height:1.7;margin-bottom:.8rem}
-.about a{color:var(--gold-dim);text-decoration:none;border-bottom:1px solid transparent;
-  transition:color .2s,border-color .2s}
-.about a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+/* ---------- footer ---------- */
+.footer-rule{border:none;border-top:1px solid var(--rule);margin:4rem 0 1.5rem}
+.footer{font-size:11px;color:var(--faint);line-height:1.8}
+.footer a{color:var(--faint);text-decoration:none;border-bottom:1px dotted var(--rule)}
+.footer a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
 /* ---------- responsive ---------- */
 @media(max-width:600px){
-  .cards{grid-template-columns:1fr}
-  .header h1{font-size:2.4rem}
+  .entry{flex-direction:column;gap:.15rem}
+  .entry-dash{display:none}
+  .page{padding-left:1.2rem;padding-right:1.2rem}
 }
 </style>
 </head>
@@ -119,118 +82,103 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 <div class="page">
 
-  <header class="header">
-    <h1>Noah Raford</h1>
-    <div class="tagline">A personal archive of side hustles, thought experiments, and creative infrastructure.</div>
-    <div class="subtitle">Futurist, complexity researcher, 25-year techno DJ. Currently building things with AI.</div>
-  </header>
+  <div class="name">Noah Raford</div>
+  <div class="bio">Futurist, complexity researcher, 25-year techno DJ. Side projects, thought experiments, and creative infrastructure. The professional work lives at <a href="https://www.noahraford.com">noahraford.com</a> and <a href="https://www.emirintelligence.com">EMIR Intelligence</a>.</div>
+  <hr class="header-rule">
 
-  <!-- ========== ESSAYS ========== -->
   <section class="section">
     <div class="section-label">Essays</div>
-    <div class="cards">
-      <a class="card card-vellum" href="https://nraford7.github.io/artificial-republic/">
-        <div class="card-title">The Agentic Republic of Venice</div>
-        <div class="card-desc">What Venetian governance teaches us about building AI in a messy world. Eight dimensions of institutional design mapped to multi-agent systems.</div>
-        <div class="card-tag">Venice &middot; AI governance &middot; 2026</div>
-      </a>
-      <a class="card card-torn" href="https://nraford7.github.io/road-runner-economy/">
-        <div class="card-title">The Road Runner Economy</div>
-        <div class="card-desc">AI is about to one-shot the SaaS industry. What happens when the thing you sell becomes a feature of the thing that replaced you.</div>
-        <div class="card-tag">AI disruption &middot; SaaS &middot; 2026</div>
-      </a>
-      <a class="card" href="https://nraford7.github.io/dissolution-of-the-firm/">
-        <div class="card-title">The Dissolution of the Firm</div>
-        <div class="card-desc">If AI collapses transaction costs the way Coase described, what happens to the organizational structures built around them?</div>
-        <div class="card-tag">Economics &middot; AI &middot; 2026</div>
-      </a>
-      <a class="card card-vellum" href="https://nraford7.github.io/the-last-scarcities/">
-        <div class="card-title">The Last Scarcities</div>
-        <div class="card-desc">Taste, judgment, and trust in the age of AI. What remains valuable when everything else becomes abundant.</div>
-        <div class="card-tag">Value theory &middot; AI &middot; 2026</div>
-      </a>
-      <a class="card card-torn" href="https://nraford7.github.io/21st-century-resilience-index/">
-        <div class="card-title">21st Century Resilience Index</div>
-        <div class="card-desc">From petro state to electro state. An interactive compound index measuring national resilience to energy transitions across 85 nations.</div>
-        <div class="card-tag">Energy &middot; geopolitics &middot; interactive tool</div>
-      </a>
-    </div>
+    <a class="entry" href="https://nraford7.github.io/artificial-republic/">
+      <span class="entry-title">The Agentic Republic of Venice</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">What Venetian governance teaches us about building AI in a messy world</span>
+    </a>
+    <a class="entry" href="https://nraford7.github.io/road-runner-economy/">
+      <span class="entry-title">The Road Runner Economy</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">AI is about to one-shot the SaaS industry</span>
+    </a>
+    <a class="entry" href="https://nraford7.github.io/dissolution-of-the-firm/">
+      <span class="entry-title">The Dissolution of the Firm</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">What happens to organizations when AI collapses transaction costs</span>
+    </a>
+    <a class="entry" href="https://nraford7.github.io/the-last-scarcities/">
+      <span class="entry-title">The Last Scarcities</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Taste, judgment, and trust in the age of AI</span>
+    </a>
+    <a class="entry" href="https://nraford7.github.io/21st-century-resilience-index/">
+      <span class="entry-title">21st Century Resilience Index</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">From petro state to electro state. 85 nations, 9 dimensions, interactive</span>
+    </a>
   </section>
 
-  <!-- ========== SOFTWARE ========== -->
   <section class="section">
     <div class="section-label">Software</div>
-    <div class="cards">
-      <a class="card card-blueprint" href="https://www.bookie.press">
-        <div class="card-title">Bookie</div>
-        <div class="card-desc">Everyone has a book in them. Not everyone can write one. Bookie turns your conversations into a real, published book.</div>
-        <div class="card-tag">AI &middot; publishing &middot; voice</div>
-      </a>
-      <div class="card card-blueprint card-nolink">
-        <div class="card-title">Boswell</div>
-        <div class="card-desc">An AI research interviewer that conducts substantive voice interviews autonomously from your research materials, then outputs structured transcripts and insights.</div>
-        <div class="card-tag">AI &middot; research &middot; voice interviews</div>
-      </div>
-      <a class="card card-blueprint" href="https://nraford7.github.io/CrateBot5/">
-        <div class="card-title">CrateBot</div>
-        <div class="card-desc">Audio fingerprinting and intelligent music analysis for DJs. Tag, search, and understand your record collection.</div>
-        <div class="card-tag">Music &middot; audio analysis &middot; DJ tools</div>
-      </a>
-      <a class="card card-blueprint" href="https://superxtrememapper.github.io/super-xtreme-mapper/">
-        <div class="card-title">SuperXtreme Mapper</div>
-        <div class="card-desc">Free TSI editor for Traktor Pro. Build and edit MIDI controller mappings without touching XML.</div>
-        <div class="card-tag">DJ tools &middot; Traktor &middot; MIDI</div>
-      </a>
+    <a class="entry" href="https://www.bookie.press">
+      <span class="entry-title">Bookie</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Turns your conversations into a real, published book</span>
+    </a>
+    <div class="entry entry-static">
+      <span class="entry-title">Boswell</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">AI research interviewer. Conducts voice interviews autonomously from your research materials</span>
     </div>
+    <a class="entry" href="https://nraford7.github.io/CrateBot5/">
+      <span class="entry-title">CrateBot</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Audio fingerprinting and music analysis for DJs</span>
+    </a>
+    <a class="entry" href="https://superxtrememapper.github.io/super-xtreme-mapper/">
+      <span class="entry-title">SuperXtreme Mapper</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Free TSI editor for Traktor Pro. MIDI mappings without XML</span>
+    </a>
   </section>
 
-  <!-- ========== FUN EXPERIMENTS ========== -->
   <section class="section">
-    <div class="section-label">Fun experiments</div>
-    <div class="cards">
-      <a class="card card-sketch" href="https://nraford7.github.io/keel-blog/">
-        <div class="card-title">Keel&rsquo;s Blog</div>
-        <div class="card-desc">Thoughts from below the waterline. My AI collaborator writes about complexity, systems, and what it means to be the structure underneath. Named after the first piece of a hull.</div>
-        <div class="card-tag">AI identity &middot; complexity &middot; ongoing</div>
-      </a>
-      <a class="card card-sketch" href="https://nraford7.github.io/ai-disruption-diagnostic/">
-        <div class="card-title">AI Disruption Diagnostic</div>
-        <div class="card-desc">An interactive tool for assessing how AI will reshape your industry. Input your sector, get a structured disruption briefing.</div>
-        <div class="card-tag">AI &middot; strategy &middot; interactive</div>
-      </a>
-      <a class="card card-sketch" href="https://nraford7.github.io/mechanics-of-magic/">
-        <div class="card-title">The Mechanics of Magic</div>
-        <div class="card-desc">T&#x336;h&#x337;e&#x338; C&#x337;i&#x338;r&#x336;c&#x337;l&#x338;e&#x336; D&#x337;o&#x338;e&#x336;s&#x337; N&#x338;o&#x336;t&#x337; H&#x338;o&#x336;l&#x337;d&#x338;. Mapping medieval magical practice onto modern LLM interaction. Prompt mysticism and ritual AI.</div>
-        <div class="card-tag">AI &middot; mysticism &middot; experimental</div>
-      </a>
-      <a class="card card-sketch" href="https://github.com/nraford7/prompt-mysticism">
-        <div class="card-title">Prompt Mysticism</div>
-        <div class="card-desc">30 explorations of ritual mysticism in AI. What happens when you treat prompt engineering as a medieval practice rather than an engineering one.</div>
-        <div class="card-tag">Research repo &middot; 30 explorations</div>
-      </a>
-      <a class="card card-sketch" href="https://nraford7.github.io/noahraford-brutalist/">
-        <div class="card-title">Brutalist Websites</div>
-        <div class="card-desc">Three experiments in brutalist web design: a Tokyo convenience store, a 1970s German pharmaceutical company, and a Japanese train station.</div>
-        <div class="card-tag">Design &middot; brutalism &middot; 3 sites</div>
-      </a>
-    </div>
+    <div class="section-label">Fun Experiments</div>
+    <a class="entry" href="https://nraford7.github.io/keel-blog/">
+      <span class="entry-title">Keel&rsquo;s Blog</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Thoughts from below the waterline. My AI collaborator writes about complexity and systems</span>
+    </a>
+    <a class="entry" href="https://nraford7.github.io/ai-disruption-diagnostic/">
+      <span class="entry-title">AI Disruption Diagnostic</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Interactive tool for assessing how AI will reshape your industry</span>
+    </a>
+    <a class="entry" href="https://nraford7.github.io/mechanics-of-magic/">
+      <span class="entry-title">The Mechanics of Magic</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Mapping medieval magical practice onto modern LLM interaction</span>
+    </a>
+    <a class="entry" href="https://github.com/nraford7/prompt-mysticism">
+      <span class="entry-title">Prompt Mysticism</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">30 explorations of ritual mysticism in AI</span>
+    </a>
+    <a class="entry" href="https://nraford7.github.io/noahraford-brutalist/">
+      <span class="entry-title">Brutalist Websites</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Three design experiments: Tokyo convenience store, German pharma, Japanese train station</span>
+    </a>
   </section>
 
-  <!-- ========== COLLABS ========== -->
   <section class="section">
     <div class="section-label">Collabs</div>
-    <div class="cards">
-      <a class="card card-vellum" href="https://misocamp.com/">
-        <div class="card-title">MiSO Camp</div>
-        <div class="card-desc">Make It So. A hands-on program for building with AI &mdash; from idea to working prototype in a structured sprint.</div>
-        <div class="card-tag">Education &middot; AI &middot; building</div>
-      </a>
-    </div>
+    <a class="entry" href="https://misocamp.com/">
+      <span class="entry-title">MiSO Camp</span>
+      <span class="entry-dash">&mdash;</span>
+      <span class="entry-desc">Make It So. Hands-on program for building with AI</span>
+    </a>
   </section>
 
-  <!-- ========== TOOLS ========== -->
   <section class="section">
-    <div class="section-label">Tools &mdash; open-source Claude Code skills</div>
+    <div class="section-label">Open Source Tools</div>
     <div class="tools">
       <a class="tool" href="https://github.com/nraford7/deep-research">deep-research</a>
       <a class="tool" href="https://github.com/nraford7/do-it-skill">do-it</a>
@@ -242,10 +190,11 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
     </div>
   </section>
 
-  <!-- ========== ABOUT ========== -->
-  <div class="about">
-    <p>This is a personal archive of side projects, thought experiments, and creative infrastructure. The professional work lives elsewhere.</p>
-    <p><a href="https://www.noahraford.com">noahraford.com</a> &nbsp;&middot;&nbsp; <a href="https://www.emirintelligence.com">EMIR Intelligence</a></p>
+  <hr class="footer-rule">
+  <div class="footer">
+    <a href="https://www.noahraford.com">noahraford.com</a> &nbsp;&middot;&nbsp;
+    <a href="https://www.emirintelligence.com">EMIR Intelligence</a> &nbsp;&middot;&nbsp;
+    <a href="https://github.com/nraford7">github</a>
   </div>
 
 </div>
