@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Noah Raford</title>
-<meta name="description" content="A personal notebook of various side hustles, thought experiments, shared tools and creative projects.">
+<meta name="description" content="A personal notebook of tools, thoughts, experiments, side hustles, and software worth sharing (or maybe not).">
 <meta name="theme-color" content="#ece1c4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,10 +32,6 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
   overflow-x:hidden;
-  background-image:
-    radial-gradient(ellipse at 18% 8%, oklch(0.62 0.06 60/.05), transparent 55%),
-    radial-gradient(ellipse at 85% 88%, oklch(0.50 0.08 45/.045), transparent 55%),
-    radial-gradient(ellipse at 50% 40%, oklch(0.20 0.02 60/.02), transparent 75%);
 }
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--sienna);outline-offset:3px;border-radius:2px}
@@ -65,8 +61,6 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .col-sketch{position:relative}
 .col-sketch img{
   width:100%;height:auto;display:block;
-  mix-blend-mode:multiply;
-  filter:contrast(1.05) saturate(.9);
 }
 
 /* ---------- hero / intro row ---------- */
@@ -91,6 +85,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   font-family:var(--sc);font-weight:600;text-transform:uppercase;
   font-size:clamp(1.45rem,1.2rem + 0.6vw,1.9rem);
   letter-spacing:.13em;color:var(--sienna);
+  margin-top:clamp(0.7rem,2.4vh,2rem);
   margin-bottom:1.5rem;
   display:flex;align-items:center;gap:.95rem;
 }
@@ -154,7 +149,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   <section class="row reveal">
     <div class="col-text">
       <h1 class="hero-name">Noah<br>Raford</h1>
-      <p class="hero-sub">A personal notebook of various side hustles, thought experiments, shared tools and creative projects</p>
+      <p class="hero-sub">A personal notebook of tools, thoughts, experiments, side hustles, and software worth sharing (or maybe not)</p>
       <div class="hero-rule"><span>a working notebook</span></div>
     </div>
     <figure class="col-sketch">
@@ -218,7 +213,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
       </a>
     </div>
     <figure class="col-sketch">
-      <img src="images/sk-software.jpg" alt="A fantastical Renaissance book-binding machine of gears and levers throwing off pages, drawn as a Da Vinci notebook study." width="1000" height="1000" decoding="async" loading="lazy">
+      <img src="images/sk-software.jpg" alt="A cross-section of a nautilus shell showing its logarithmic growth spiral, drawn as a D'Arcy Thompson notebook study." width="1000" height="1000" decoding="async" loading="lazy">
     </figure>
   </section>
 
@@ -304,7 +299,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
       </a>
     </div>
     <figure class="col-sketch">
-      <img src="images/sk-collabs.jpg" alt="Two mechanical automaton figures at a workbench building a third together, drawn as a Da Vinci notebook study." width="1000" height="1000" decoding="async" loading="lazy">
+      <img src="images/sk-collabs.jpg" alt="A botanical study of a grafted branch splice and a sprouting seedling, drawn as a Da Vinci notebook study." width="1000" height="1000" decoding="async" loading="lazy">
     </figure>
   </section>
 
