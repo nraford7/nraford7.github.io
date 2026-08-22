@@ -200,6 +200,15 @@ body{
 .colo-orn{color:var(--sanguine);font-size:1.55rem;line-height:1;margin-bottom:1rem}
 .colo-links{display:flex;justify-content:center;gap:1.7rem;flex-wrap:wrap}
 .colo-fin{font-family:var(--sc);font-style:italic;letter-spacing:.14em;color:var(--dim);margin-top:1.5rem;font-size:1.05rem}
+
+.col-sketch video{width:100%;height:auto;display:block}
+.row:nth-of-type(odd) .col-sketch video{margin-left:auto}
+.row:nth-of-type(even) .col-sketch video{margin-right:auto}
+.row:nth-of-type(2) .col-sketch video{width:108%;max-width:none;transform:translateY(-0.6rem)}
+.row:nth-of-type(3) .col-sketch video{width:94%;transform:translateY(2.6rem)}
+.row:nth-of-type(4) .col-sketch video{width:86%;transform:translateY(-0.3rem)}
+.row:nth-of-type(5) .col-sketch video{width:104%;max-width:none;transform:translateY(3.2rem)}
+.row:nth-of-type(6) .col-sketch video{width:84%;transform:translateY(0.6rem)}
 </style>
 </head>
 <body>
@@ -249,7 +258,7 @@ body{
       </a>
     </div>
     <figure class="col-sketch">
-      <img src="images/sk-essays.jpg" alt="An exploded study of a domed council chamber of automaton figures wired to a central orchestrator, drawn as a Da Vinci notebook study." width="1000" height="1000" decoding="async" loading="lazy">
+      <video class="plate-video" muted loop playsinline preload="none" poster="images/sk-essays.jpg" width="1000" height="1000" aria-label="An exploded study of a domed council chamber of automaton figures wired to a central orchestrator, drawn as a Da Vinci notebook study."><source src="images/sk-essays.webm" type="video/webm"><source src="images/sk-essays.mp4" type="video/mp4"></video>
     </figure>
   </section>
 
@@ -275,7 +284,7 @@ body{
       </a>
     </div>
     <figure class="col-sketch">
-      <img src="images/sk-software.jpg" alt="A cross-section of a nautilus shell showing its logarithmic growth spiral, drawn as a D'Arcy Thompson notebook study." width="1000" height="1000" decoding="async" loading="lazy">
+      <video class="plate-video" muted loop playsinline preload="none" poster="images/sk-software.jpg" width="1000" height="1000" aria-label="A cross-section of a nautilus shell showing its logarithmic growth spiral, drawn as a D'Arcy Thompson notebook study."><source src="images/sk-software.webm" type="video/webm"><source src="images/sk-software.mp4" type="video/mp4"></video>
     </figure>
   </section>
 
@@ -313,7 +322,7 @@ body{
       </a>
     </div>
     <figure class="col-sketch">
-      <img src="images/sk-tools.jpg" alt="A workshop plate of precision instruments — calipers, cogwheels, a jointed mechanical hand, an astrolabe — drawn as a Da Vinci notebook study." width="1000" height="1000" decoding="async" loading="lazy">
+      <video class="plate-video" muted loop playsinline preload="none" poster="images/sk-tools.jpg" width="1000" height="1000" aria-label="A workshop plate of precision instruments — calipers, cogwheels, a jointed mechanical hand, an astrolabe — drawn as a Da Vinci notebook study."><source src="images/sk-tools.webm" type="video/webm"><source src="images/sk-tools.mp4" type="video/mp4"></video>
     </figure>
   </section>
 
@@ -347,7 +356,7 @@ body{
       </a>
     </div>
     <figure class="col-sketch">
-      <img src="images/sk-experiments.jpg" alt="A surreal alchemical study of a mechanical homunculus in a flask with scrolls of language rising like wings, drawn as a Da Vinci notebook study." width="1000" height="1000" decoding="async" loading="lazy">
+      <video class="plate-video" muted loop playsinline preload="none" poster="images/sk-experiments.jpg" width="1000" height="1000" aria-label="A surreal alchemical study of a mechanical homunculus in a flask with scrolls of language rising like wings, drawn as a Da Vinci notebook study."><source src="images/sk-experiments.webm" type="video/webm"><source src="images/sk-experiments.mp4" type="video/mp4"></video>
     </figure>
   </section>
 
@@ -361,7 +370,7 @@ body{
       </a>
     </div>
     <figure class="col-sketch">
-      <img src="images/sk-collabs.jpg" alt="A botanical study of a grafted branch splice and a sprouting seedling, drawn as a Da Vinci notebook study." width="1000" height="1000" decoding="async" loading="lazy">
+      <video class="plate-video" muted loop playsinline preload="none" poster="images/sk-collabs.jpg" width="1000" height="1000" aria-label="A botanical study of a grafted branch splice and a sprouting seedling, drawn as a Da Vinci notebook study."><source src="images/sk-collabs.webm" type="video/webm"><source src="images/sk-collabs.mp4" type="video/mp4"></video>
     </figure>
   </section>
 
@@ -382,6 +391,13 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},
   {threshold:.1,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+(function(){var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var vids=[].slice.call(document.querySelectorAll('.plate-video'));
+if(!vids.length||rm)return;
+var vio=new IntersectionObserver(function(es){es.forEach(function(e){
+  var v=e.target; if(e.isIntersecting){var p=v.play();p&&p.catch&&p.catch(function(){});}else{v.pause();}});},{threshold:.15});
+vids.forEach(function(v){vio.observe(v);});})();
 </script>
 </body>
 </html>
