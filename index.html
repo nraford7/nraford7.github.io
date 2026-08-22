@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Noah Raford</title>
-<meta name="description" content="A personal notebook of tools, thoughts, experiments, side hustles, and software worth sharing (or maybe not).">
+<meta name="description" content="A personal notebook of tools, ideas, experiments, side hustles, and software worth sharing (or maybe not).">
 <meta name="theme-color" content="#ece1c4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,6 +139,67 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   .reveal{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
 }
+
+/* ===================== DESIGN TEST v3 ===================== */
+:root{ --sanguine:oklch(0.47 0.15 33); --crimson:oklch(0.47 0.19 27); }
+
+/* (6) atmosphere: MORE foxing + edge vignette */
+body{
+  background-color:var(--parchment);
+  background-image:
+    radial-gradient(circle at 9% 14%,  oklch(0.46 0.12 40/.24) 0 2px, transparent 7px),
+    radial-gradient(circle at 87% 9%,  oklch(0.46 0.12 45/.20) 0 1.5px, transparent 6px),
+    radial-gradient(circle at 72% 22%, oklch(0.44 0.11 38/.19) 0 2.5px, transparent 8px),
+    radial-gradient(circle at 24% 33%, oklch(0.46 0.12 45/.18) 0 1.5px, transparent 6px),
+    radial-gradient(circle at 92% 44%, oklch(0.44 0.11 38/.21) 0 2px, transparent 7px),
+    radial-gradient(circle at 38% 49%, oklch(0.46 0.12 45/.16) 0 1.5px, transparent 5px),
+    radial-gradient(circle at 62% 58%, oklch(0.44 0.11 38/.20) 0 2.5px, transparent 8px),
+    radial-gradient(circle at 14% 66%, oklch(0.46 0.12 45/.18) 0 1.5px, transparent 6px),
+    radial-gradient(circle at 83% 71%, oklch(0.44 0.11 38/.21) 0 2px, transparent 7px),
+    radial-gradient(circle at 30% 80%, oklch(0.46 0.12 45/.17) 0 2px, transparent 6px),
+    radial-gradient(circle at 70% 88%, oklch(0.44 0.11 38/.20) 0 2.5px, transparent 8px),
+    radial-gradient(circle at 47% 94%, oklch(0.46 0.12 45/.16) 0 1.5px, transparent 5px),
+    radial-gradient(ellipse 114% 92% at 50% 42%, transparent 54%, oklch(0.30 0.03 58/.13) 100%);
+}
+
+/* (4) FRONTISPIECE — title page; crimson rule pulled up */
+.row.frontis{align-items:center;
+  margin-bottom:clamp(4.5rem,12vh,9rem);
+  padding-bottom:clamp(3rem,7vh,5.5rem);
+  border-bottom:1px solid var(--rule)}
+.hero-rule span{color:var(--sanguine)}
+.hero-rule::after{background:linear-gradient(90deg,var(--sanguine),transparent)}
+.row.frontis .col-sketch img{width:116%!important;max-width:none;transform:none!important}
+.frontis-folio{font-family:var(--sc);text-transform:uppercase;letter-spacing:.34em;
+  font-size:.92rem;color:var(--sanguine);margin-bottom:1.5rem;font-weight:600}
+.hero-name{font-size:clamp(4.4rem,2.6rem + 9vw,8.8rem)}
+.hero-sub{margin-bottom:0}
+
+/* (1) break the metronome: outer-align plates, per-row scale + vertical shift */
+.row:nth-of-type(odd) .col-sketch img{margin-left:auto}
+.row:nth-of-type(even) .col-sketch img{margin-right:auto}
+.row:nth-of-type(2) .col-sketch img{width:108%;max-width:none;transform:translateY(-0.6rem)}   /* essays: larger, gutter keeps it breathing */
+.row:nth-of-type(3) .col-sketch img{width:94%;transform:translateY(2.6rem)}
+.row:nth-of-type(4) .col-sketch img{width:86%;transform:translateY(-0.3rem)}
+.row:nth-of-type(5) .col-sketch img{width:104%;max-width:none;transform:translateY(3.2rem)}
+.row:nth-of-type(6) .col-sketch img{width:84%;transform:translateY(0.6rem)}
+/* extra gutter on the essays row so the plate breathes */
+.row:nth-of-type(2){gap:clamp(3rem,7vw,6rem)}
+
+/* (3) sanguine + (5) hand-drawn hover underline */
+.e-title{display:inline;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='6' preserveAspectRatio='none'%3E%3Cpath d='M1 4 C 22 2 40 5 60 3.2 S 98 2 119 4' fill='none' stroke='%23a8452f' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:0 1.15em;background-size:0% 0.34em;
+  transition:background-size .45s cubic-bezier(.22,1,.36,1),color .15s}
+.entry:hover .e-title{background-size:100% 0.34em;color:var(--ink)}
+.entry:hover{padding-left:.35rem}
+
+/* (7) colophon closing gesture */
+.colophon{display:block;text-align:center;border-top:none}
+.colophon::before{content:"";display:block;width:5rem;height:1px;background:var(--rule);margin:0 auto 1.6rem}
+.colo-orn{color:var(--sanguine);font-size:1.55rem;line-height:1;margin-bottom:1rem}
+.colo-links{display:flex;justify-content:center;gap:1.7rem;flex-wrap:wrap}
+.colo-fin{font-family:var(--sc);font-style:italic;letter-spacing:.14em;color:var(--dim);margin-top:1.5rem;font-size:1.05rem}
 </style>
 </head>
 <body>
@@ -146,10 +207,11 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 <main class="wrap">
 
   <!-- intro -->
-  <section class="row reveal">
+  <section class="row reveal frontis">
     <div class="col-text">
+      <div class="frontis-folio">Notebook &middot; MMXXVI</div>
       <h1 class="hero-name">Noah<br>Raford</h1>
-      <p class="hero-sub">A personal notebook of tools, thoughts, experiments, side hustles, and software worth sharing (or maybe not)</p>
+      <p class="hero-sub">A personal notebook of tools, ideas, experiments, side hustles, and software worth sharing (or maybe not)</p>
       <div class="hero-rule"><span>a working notebook</span></div>
     </div>
     <figure class="col-sketch">
@@ -306,9 +368,13 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 </main>
 
 <footer class="colophon">
-  <a href="https://www.noahraford.com">noahraford.com</a>
-  <a href="https://www.emirintelligence.com">EMIR Intelligence</a>
-  <a href="https://github.com/nraford7">GitHub</a>
+  <div class="colo-orn">&#10087;</div>
+  <nav class="colo-links">
+    <a href="https://www.noahraford.com">noahraford.com</a>
+    <a href="https://www.emirintelligence.com">EMIR Intelligence</a>
+    <a href="https://github.com/nraford7">GitHub</a>
+  </nav>
+  <div class="colo-fin">finis &middot; MMXXVI</div>
 </footer>
 
 <script>
