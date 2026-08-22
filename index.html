@@ -53,7 +53,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   display:grid;
   grid-template-columns:1.05fr 0.95fr;
   gap:clamp(2rem,5vw,4.5rem);
-  align-items:center;
+  align-items:start;
   margin-bottom:clamp(3.5rem,9vh,7rem);
 }
 .row .col-sketch{order:2}
@@ -104,7 +104,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
 .entry:last-of-type{border-bottom:none}
 .entry:hover{padding-left:.55rem}
 .e-title{font-weight:500;
-  font-size:clamp(1.35rem,1.2rem + 0.4vw,1.6rem);
+  font-size:clamp(1.18rem,1.05rem + 0.35vw,1.4rem);
   color:var(--ink);line-height:1.25;transition:color .15s}
 .entry:hover .e-title{color:var(--sienna-bright)}
 .e-desc{font-style:italic;color:var(--dim);
@@ -226,7 +226,7 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   <section class="row reveal">
     <div class="col-text">
       <h2 class="section-head">public tools</h2>
-      <a class="entry" href="https://github.com/nraford7/deep-research">
+      <a class="entry" href="https://github.com/nraford7/deep-research-v2">
         <div class="e-title">deep-research</div>
         <div class="e-desc">Four-model parallel research with adversarial cross-validation</div>
       </a>
@@ -264,10 +264,6 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
   <section class="row reveal">
     <div class="col-text">
       <h2 class="section-head">experiments</h2>
-      <a class="entry" href="https://nraford7.github.io/keel-blog/about/">
-        <div class="e-title">Keel's Blog</div>
-        <div class="e-desc">Thoughts from below the waterline. My AI collaborator writes about complexity</div>
-      </a>
       <a class="entry" href="https://nraford7.github.io/21st-century-resilience-index/">
         <div class="e-title">21st Century Resilience Index</div>
         <div class="e-desc">Interactive compound index. 85 nations, 9 dimensions, 3D scatter plot</div>
@@ -287,6 +283,10 @@ body::after{content:"";position:fixed;inset:0;z-index:100;pointer-events:none;op
       <a class="entry" href="https://nraford7.github.io/noahraford-brutalist/">
         <div class="e-title">Brutalist Websites</div>
         <div class="e-desc">Tokyo convenience store, German pharma, Japanese train station</div>
+      </a>
+      <a class="entry" href="https://nraford7.github.io/keel-blog/about/">
+        <div class="e-title">Keel's Blog</div>
+        <div class="e-desc">Thoughts from below the waterline. My AI collaborator writes about complexity</div>
       </a>
     </div>
     <figure class="col-sketch">
